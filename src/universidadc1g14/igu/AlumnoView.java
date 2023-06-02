@@ -15,9 +15,7 @@ public class AlumnoView extends javax.swing.JInternalFrame {
     private AlumnoData alumnoData;
     private Conexion conexion;
 
-    /**
-     * Creates new form NuevoCliente
-     */
+   
     public AlumnoView() {
         initComponents();
         alumnoData = new AlumnoData();

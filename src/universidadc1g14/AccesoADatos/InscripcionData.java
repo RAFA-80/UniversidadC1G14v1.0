@@ -160,7 +160,7 @@ public class InscripcionData {
         return inscripciones;
     }
     
-    public List<Materia> listarmateriasCursadas(int idM) {
+    public List<Materia> listarmateriasCursadas(int idA) {
         List<Materia> materias = new ArrayList<>();
 
         try {
@@ -169,7 +169,7 @@ public class InscripcionData {
                     + "WHERE idAlumno = ?";
 
             PreparedStatement ps = c.prepareStatement(sql);
-            ps.setInt(1, idM);
+            ps.setInt(1, idA);
             ResultSet rs = ps.executeQuery();
             Materia m;
             while (rs.next()) {
@@ -187,14 +187,14 @@ public class InscripcionData {
         return materias;
     }
     
-    public List<Materia> listarmateriasNoCursadas(int idM) {
+    public List<Materia> listarmateriasNoCursadas(int idA) {
         List<Materia> materias = new ArrayList<>();
 
         try {
             String sql = "SELECT * FROM materia WHERE idMateria NOT IN (SELECT materia.idMateria FROM materia JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria) WHERE idAlumno = ?)";
 
             PreparedStatement ps = c.prepareStatement(sql);
-            ps.setInt(1, idM);
+            ps.setInt(1, idA);
             ResultSet rs = ps.executeQuery();
             Materia m;
             while (rs.next()) {

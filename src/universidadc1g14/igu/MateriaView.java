@@ -13,9 +13,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private MateriaData materiaData;
     private Conexion conexion;
 
-    /**
-     * Creates new form NuevoCliente
-     */
+  
     public MateriaView() {
         initComponents();
         materiaData = new MateriaData();
