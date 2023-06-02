@@ -1,7 +1,6 @@
 package universidadc1g14.igu;
 
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadc1g14.AccesoADatos.AlumnoData;
