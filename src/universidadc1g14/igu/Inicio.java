@@ -37,6 +37,7 @@ public class Inicio extends javax.swing.JFrame {
         jmNotas = new javax.swing.JMenu();
         jmiNotas = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -119,6 +120,15 @@ public class Inicio extends javax.swing.JFrame {
         jMenuBar1.add(jmNotas);
 
         jmConsultas.setText("Consultas");
+
+        jMenuItem2.setText("Formulario de consulta");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jmConsultas.add(jMenuItem2);
+
         jMenuBar1.add(jmConsultas);
 
         setJMenuBar(jMenuBar1);
@@ -154,7 +164,7 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         desktop.removeAll();
         desktop.repaint();
-        AlumnoView a = new AlumnoView();
+        AlumnoView1 a = new AlumnoView1();
         desktop.add(a);
         desktop.moveToFront(a);
     }//GEN-LAST:event_jmiAlumnoActionPerformed
@@ -186,6 +196,15 @@ public class Inicio extends javax.swing.JFrame {
         desktop.moveToFront(n);
     }//GEN-LAST:event_jmiNotasActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        ConsultasView c = new ConsultasView();
+        desktop.add(c);
+        desktop.moveToFront(c);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,6 +214,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jmAlumno;
     private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenu jmInscripcion;

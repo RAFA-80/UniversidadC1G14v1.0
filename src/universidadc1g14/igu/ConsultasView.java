@@ -1,34 +1,37 @@
 package universidadc1g14.igu;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadc1g14.AccesoADatos.AlumnoData;
 import universidadc1g14.AccesoADatos.InscripcionData;
+import universidadc1g14.AccesoADatos.MateriaData;
 import universidadc1g14.Entidades.Alumno;
 import universidadc1g14.Entidades.Inscripcion;
+import universidadc1g14.Entidades.Materia;
 
 /**
  *
  * @author RAFAEL
  */
-public class NotasView extends javax.swing.JInternalFrame {
+public class ConsultasView extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo;
-    private ArrayList<Alumno> alumnos;
-    private AlumnoData alumnoData;
+    private ArrayList<Materia> materias;
     private InscripcionData inscripcionData;
+    private MateriaData materiaData;
+    private AlumnoData alumnoData;
 
     /**
      * Creates new form NotasView
      */
-    public NotasView() {
+    public ConsultasView() {
         initComponents();
         modelo = new DefaultTableModel();
-        alumnoData = new AlumnoData();
-        alumnos = (ArrayList) alumnoData.listarAlumnos();
         inscripcionData = new InscripcionData();
-        cargarAlumnos();
+        materiaData = new MateriaData();
+        materias = (ArrayList) materiaData.listarMaterias();
+        alumnoData = new AlumnoData();
+        cargarMaterias();
         armarTabla();
     }
 
@@ -44,11 +47,9 @@ public class NotasView extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jcAlumno = new javax.swing.JComboBox<>();
+        jcMateria = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtNotas = new javax.swing.JTable();
-        jbGuardar = new javax.swing.JButton();
-        jbCancelar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -67,16 +68,16 @@ public class NotasView extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("[FORMULARIO DE NOTAS]");
+        jLabel1.setText("[ALUMNOS POR MATERIA]");
 
         jLabel2.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel2.setText("ALUMNO:");
+        jLabel2.setText("MATERIA:");
 
-        jcAlumno.setBackground(new java.awt.Color(204, 204, 255));
-        jcAlumno.setForeground(new java.awt.Color(102, 153, 255));
-        jcAlumno.addActionListener(new java.awt.event.ActionListener() {
+        jcMateria.setBackground(new java.awt.Color(204, 204, 255));
+        jcMateria.setForeground(new java.awt.Color(102, 153, 255));
+        jcMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcAlumnoActionPerformed(evt);
+                jcMateriaActionPerformed(evt);
             }
         });
 
@@ -85,64 +86,38 @@ public class NotasView extends javax.swing.JInternalFrame {
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jtNotas);
-
-        jbGuardar.setBackground(new java.awt.Color(204, 204, 255));
-        jbGuardar.setForeground(new java.awt.Color(0, 0, 204));
-        jbGuardar.setText("GUARDAR");
-        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbGuardarActionPerformed(evt);
-            }
-        });
-
-        jbCancelar.setBackground(new java.awt.Color(204, 204, 255));
-        jbCancelar.setForeground(new java.awt.Color(0, 0, 204));
-        jbCancelar.setText("CANCELAR");
-        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
                                 .addComponent(jLabel2)
-                                .addGap(26, 26, 26)
-                                .addComponent(jcAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jcMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbGuardar)
-                .addGap(50, 50, 50)
-                .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,14 +127,10 @@ public class NotasView extends javax.swing.JInternalFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jcAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbGuardar)
-                    .addComponent(jbCancelar))
-                .addGap(20, 20, 20))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,34 +147,11 @@ public class NotasView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jbCancelarActionPerformed
-
-    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // TODO add your handling code here:
-        Alumno alumno = (Alumno) jcAlumno.getSelectedItem();
-        int idAlum = alumno.getIdAlumno();
-        int filaSelec = jtNotas.getSelectedRow();
-        if (filaSelec != -1) {
-            int idMat = (Integer) modelo.getValueAt(filaSelec, 0);
-            String nota = (String) modelo.getValueAt(filaSelec, 2);
-            double not = Double.parseDouble(nota);
-            inscripcionData.actualizarNota(idAlum, idMat, not);
-            borrarTabla();
-
-        } else {
-
-            JOptionPane.showMessageDialog(this, "Usted debe seleccionar una materia");
-        }
-    }//GEN-LAST:event_jbGuardarActionPerformed
-
-    private void jcAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnoActionPerformed
+    private void jcMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMateriaActionPerformed
         // TODO add your handling code here:
         borrarTabla();
         llenarTabla();
-    }//GEN-LAST:event_jcAlumnoActionPerformed
+    }//GEN-LAST:event_jcMateriaActionPerformed
 
     private void borrarTabla() {
         int a = modelo.getRowCount() - 1;
@@ -217,15 +165,13 @@ public class NotasView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbCancelar;
-    private javax.swing.JButton jbGuardar;
-    private javax.swing.JComboBox<Alumno> jcAlumno;
+    private javax.swing.JComboBox<Materia> jcMateria;
     private javax.swing.JTable jtNotas;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarAlumnos() {
-        for (Alumno aux : alumnos) {
-            jcAlumno.addItem(aux);
+    private void cargarMaterias() {
+        for (Materia aux : materias) {
+            jcMateria.addItem(aux);
         }
     }
 
@@ -241,11 +187,13 @@ public class NotasView extends javax.swing.JInternalFrame {
     }
 
     private void llenarTabla() {
-        Alumno seleccionado = (Alumno) jcAlumno.getSelectedItem();
-        ArrayList<Inscripcion> ins = (ArrayList<Inscripcion>) inscripcionData.listarInscripcionesPorAlumno(seleccionado.getIdAlumno());
+        Materia seleccionada = (Materia) jcMateria.getSelectedItem();
+        ArrayList<Inscripcion> ins = (ArrayList<Inscripcion>) inscripcionData.listarInscripciones();
         for (Inscripcion a : ins) {
-            modelo.addRow(new Object[]{a.getIdMateria().getIdMateria(), a.getIdMateria().getNombre(), a.getNota()});
-
+            if(seleccionada.getIdMateria() == a.getIdMateria().getIdMateria()){
+                modelo.addRow(new Object[]{a.getIdAlumno().getIdAlumno(), (a.getIdAlumno().getNombre() + " " + a.getIdAlumno().getApellido()), a.getNota()});
+            }
+            
         }
 
     }
